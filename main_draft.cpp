@@ -22,7 +22,6 @@ int main()
     shapes[nShapes++] = new Rhombus(2, 2, 10, 6);
     shapes[nShapes++] = new IsoscelesTriangle (4,4,10,6);
 
-
     // 2. Impostazione testo
     shapes[0]->SetText("rettangolo");
     shapes[1]->SetText("rombo");
@@ -40,12 +39,11 @@ int main()
     }
 
     for (int i = 0; i < nShapes; i++) {
-        delete shapes[i];
+        if(shapes[i] != nullptr) 
+        {
+            delete shapes[i];
+        }
     }
-
-    
-
     cout << endl << "===== FINE TEST =====" << endl;
-
 
 }
