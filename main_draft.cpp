@@ -35,7 +35,7 @@ int main()
     for (int i = 0; i < nShapes; i++) {
         cout << endl << "Figura [" << i << "]" << endl;
         shapes[i]->Dump();
-        shapes[i]->Scale(-.5);
+        if(i==0){shapes[i]->Scale(5);}
         shapes[i]->Dump();
     }
 
