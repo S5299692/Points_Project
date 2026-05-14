@@ -183,7 +183,7 @@ void Shape::Scale(float sf)
 {
     if(sf <= 0){
         sf = 1;
-        printf("The scale value inserted is not beetween 0!\nDefaulted to 1\n");
+        printf("The scale value inserted is not > 0!\nDefaulted to 1\n");
     }
 	width = width*sf;
     height = height*sf;
