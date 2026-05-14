@@ -178,11 +178,15 @@ void Shape::Reset()
    ---------------------------- */
 
 /// @brief to rescale the shape without changing the aspect ratio
-/// @param sf scale factor (1.0 = 100%, no changes)
-   
+/// @param sf scale factor (1.0 = 100%, no changes) 
 void Shape::Scale(float sf) 
 {
-	// TO DO
+    if(sf <= 0 || sf>1){
+        sf = 1;
+        printf("The scale value inserted is not beetween 0 and 1!\nDefaulted to 1\n");
+    }
+	width = width*sf;
+    height = height*sf;
 }
 
 /* ----------------------------
