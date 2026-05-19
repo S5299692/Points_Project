@@ -82,7 +82,7 @@ void menuSelector(int selector,LogicManager myLogicManager){
         myLogicManager.printPolygonList();
         break;
     case 2:
-        myLogicManager.modifyPoligon();
+        myLogicManager.modifyPolygon();
         break;
     case 3:
         myLogicManager.movePolygon();

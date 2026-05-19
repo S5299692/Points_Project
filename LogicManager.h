@@ -43,7 +43,7 @@ public:
     void printPolygonList();
 
     /// @brief Modify a Polygon present in the @p shapes list.
-    void modifyPoligon();
+    void modifyPolygon();
 
     /// @brief Move a Polygon inside the bounding box.
     void movePolygon();
