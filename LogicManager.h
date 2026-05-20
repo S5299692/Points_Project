@@ -42,6 +42,8 @@ public:
     /// @return 0 when empty 1 when populated
     void printPolygonList();
 
+    void printPolygonListIdex();
+
     /// @brief Modify a Polygon present in the @p shapes list.
     void modifyPolygon();
 
@@ -68,6 +70,8 @@ public:
     /// @brief Get the list of Polygon of @p shapes .
     /// @return 0 when empty and 1 when populated.
     int getPolygonList();
+
+    int getValidIndex(size_t maxSize, const char* request);
    /// @}
 
 

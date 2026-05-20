@@ -15,7 +15,7 @@ using namespace std;
 
  
 void printMenu();
-void menuSelector(int selector, LogicManager myLogicManager);
+void menuSelector(int selector, LogicManager& myLogicManager);
 
 int main()
 {
@@ -26,38 +26,37 @@ int main()
     int selector = -1;
 
     while(selector != 0){
-    cout << "Inserire un numero : " ;
-    
-    try {
-            cin >> selector;
+        cout << "Inserire un numero : " ;
+        
+        try {
+                cin >> selector;
 
-            if(cin.fail() == true){
-                throw "Il carattere inserito non e' un numero!"; 
-            }
+                if(cin.fail() == true){
+                    throw "Il carattere inserito non e' un numero!"; 
+                }
 
-            if(selector < 0 || selector >6){
-                throw selector;
+                if(selector < 0 || selector >6){
+                    throw selector;
+                }
             }
+        catch(const char* error){
+            cout << error << endl;
+            cin.clear();
+
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            selector = -1;
+
+            printMenu();
         }
-    catch(const char* error){
-        cout << error << endl;
-        cin.clear();
+        catch(int error){
+            cout << "Inserire un numero intero compreso tra 0 e 6!" << endl;
+            selector = -1;
 
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-        selector = -1;
-
-        printMenu();
-    }
-    catch(int error){
-        cout << "Inserire un numero intero compreso tra 0 e 6!" << endl;
-        selector = -1;
-
-        printMenu();
-    }
-    
-    menuSelector(selector,myLogicManager);
-
+            printMenu();
+        }
+        
+        menuSelector(selector,myLogicManager);
     }
 
     cout << endl << "===== FINE TEST =====" << endl;
@@ -66,16 +65,17 @@ int main()
 
 void printMenu(){
     cout << "1-Visualizza tutti i  poligoni" << endl;
-    cout << "2-Modifica le proprietà di un poligono" << endl;
+    cout << "2-Modifica le proprieta' di un poligono" << endl;
     cout << "3-Sposta un poligono sulla griglia" << endl;
     cout << "4-Inserisci un nuovo poligono" << endl;
     cout << "5-Cancella un poligono" << endl;
     cout << "6-Cancella tutti i poligono" << endl;
+    cout << "7-Pulisci Console e Ristampa Menu" << endl;
     cout << "0-Esci" << endl;
 }
 
 
-void menuSelector(int selector,LogicManager myLogicManager){
+void menuSelector(int selector,LogicManager& myLogicManager){
     switch (selector)
     {
     case 1:
@@ -96,6 +96,13 @@ void menuSelector(int selector,LogicManager myLogicManager){
     case 6: 
         myLogicManager.deleteAllPolygon();
         break;
+    case 7:
+        #ifdef _WIN32
+        system("cls");
+        #else
+        system("clear");
+        #endif
+        printMenu();
     default:
         //selector = 0 -> Exit
         break;
