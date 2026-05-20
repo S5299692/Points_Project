@@ -11,6 +11,10 @@
 #include "iostream"
 #include "limits"
 
+
+/* ----------------------------
+   CONSTRUCTORS / DESTRUCTOR
+   ---------------------------- */
 LogicManager::LogicManager(){
 
 }
@@ -19,6 +23,16 @@ LogicManager::~LogicManager(){
     deleteAllPolygon();
 }
 
+/* ----------------------------
+   OPERATORS
+   ---------------------------- */
+
+
+/* ----------------------------
+   BASIC HANDLING
+   ---------------------------- */
+/// @brief Print the List of Shapes currently present in @p shapes .
+/// @return 0 when empty 1 when populated
 void LogicManager::printPolygonList(){
     if(shapes.size() == 0){
         std::cout << "Non ci sono Shapes nella Lista!" << std::endl;
@@ -69,7 +83,7 @@ void LogicManager::printPolygonList(){
     }
 }
 
-
+/// @brief Modify a Polygon present in the @p shapes list.
 void LogicManager::modifyPolygon(){
     int index = getValidIndex(shapes.size() ,"Inserire il numero del Poligono che si vuole modificare :");
     if(index == -1)return;
@@ -134,6 +148,7 @@ void LogicManager::modifyPolygon(){
     }
 }
 
+/// @brief Move a Polygon inside the bounding box.
 void LogicManager::movePolygon(){
 
     printPolygonListIdex();
@@ -193,6 +208,7 @@ void LogicManager::movePolygon(){
 
 }
 
+/// @brief Create a new Polygon inside the bounding box.
 void LogicManager::newPolygon(){
     std::cout << "Selezionare il tipo di poligono che si vuole aggiungere" << std::endl;
     std::cout << "1 - Rettangolo"<< std::endl;
@@ -313,6 +329,7 @@ void LogicManager::newPolygon(){
 
 }
 
+/// @brief Delete a Polygon in @p shapes.
 void LogicManager::deletePolygon(){
     int index = getValidIndex(shapes.size(), "Inserire l'indice del poligono che si vuole cancellare!");
     if(index == -1)return;
@@ -322,6 +339,7 @@ void LogicManager::deletePolygon(){
     shapes.erase(shapes.begin() + index);
 }
 
+/// @brief Delete All the Polygon in @p shapes.
 void LogicManager::deleteAllPolygon(){
     for(Shape* shape: shapes){
         delete shape;
@@ -330,7 +348,20 @@ void LogicManager::deleteAllPolygon(){
     shapes.clear();
 }
 
+/// @brief Print the List of All Index present in @p shapes .
+void LogicManager::printPolygonListIdex()
+{
+    for (int i = 0; i < (int)shapes.size(); i++)
+    {
+        std::cout << "Indice Shape[" << i << "]" << std::endl;
+    }
+}
 
+/* ----------------------------
+   GETTERS
+   ---------------------------- */
+/// @brief Get the list of Polygon of @p shapes .
+/// @return 0 when empty and 1 when populated.    
 int LogicManager::getPolygonList(){
     if(shapes.size() == 0){
         std::cout << "Non ci sono Shapes nella Lista!" << std::endl;
@@ -342,6 +373,10 @@ int LogicManager::getPolygonList(){
     }
 }
 
+/// @brief A function to get a valid Index. 
+/// @param maxSize the max sise of the array we want an index for.
+/// @param request a string that gets printed to the console for aesthetic purpose.
+/// @return an integer that rapresent a Valid Index.
 int LogicManager::getValidIndex(size_t maxSize, const char* request)
 {
     if(getPolygonList()==0){
@@ -380,11 +415,6 @@ int LogicManager::getValidIndex(size_t maxSize, const char* request)
     }
 }
 
-
-void LogicManager::printPolygonListIdex()
-{
-    for (int i = 0; i < (int)shapes.size(); i++)
-    {
-        std::cout << "Indice Shape[" << i << "]" << std::endl;
-    }
-}
+/* ----------------------------
+   DEBUG and SERIALIZATION
+   ---------------------------- */
