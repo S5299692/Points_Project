@@ -10,9 +10,6 @@
 
 using namespace std;
 
-
-
-
  
 void printMenu();
 void menuSelector(int selector, LogicManager& myLogicManager);
@@ -35,7 +32,7 @@ int main()
                     throw "Il carattere inserito non e' un numero!"; 
                 }
 
-                if(selector < 0 || selector >6){
+                if(selector < 0 || selector >7){
                     throw selector;
                 }
             }
